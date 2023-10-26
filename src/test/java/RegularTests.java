@@ -24,4 +24,18 @@ public class RegularTests {
     public void testCorrectIP(String ip, boolean expectedResult) {
         Assertions.assertEquals(expectedResult, RJ.correctIP(ip));
     }
+    @ParameterizedTest
+    @CsvSource({
+            "d4a70f12-956d-4a00-9ec4-87e3b6760573, true",
+            "12345678-4F2E-31b1-1e39-0698F20D5Aff, true",
+            "00112233-4455-6677-8899-aAbBcCdDeEfF, true",
+            "e02fd0e4-00fd-090A-ca30-0d00a0038ba0, true",
+            "d4a70f12-956d-4a00-9ec4-87e3b67605730, false",
+            "e02fd0e400fd090Aca300d00a0038ba0, false",
+            "12345678-4F2E-31p1-1e39-0698K20D5Aff, false",
+            "e02fd0e4-00fd-090A8-9e4-87e3b6760573, false"
+    })
+    public void testCorrectGuid(String guid, boolean expectedResult) {
+        Assertions.assertEquals(expectedResult, RJ.correctGuid(guid));
+    }
 }
