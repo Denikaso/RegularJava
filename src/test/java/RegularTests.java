@@ -38,4 +38,22 @@ public class RegularTests {
     public void testCorrectGuid(String guid, boolean expectedResult) {
         Assertions.assertEquals(expectedResult, RJ.correctGuid(guid));
     }
+    @ParameterizedTest
+    @CsvSource({
+            "http://www.example.com, true",
+            "https://github.com/Denikaso, true",
+            "https://theuselessweb.com/, true",
+            "http://sub.example.net:8080/?query=test#anchor, true",
+            "https://www.domain.org/?key1=value1&key2=value2, true",
+            "http://test-site.info/path/page#section, true",
+            "ftp://123.com, false",
+            "www.com, false",
+            "https://, false",
+            "http://localhost:8080?query=test, false",
+            "http://example.com/with space, false",
+            "http://-example.com, false"
+    })
+    public void testCorrectURL(String url, boolean expectedResult) {
+        Assertions.assertEquals(expectedResult, RJ.correctURL(url));
+    }
 }

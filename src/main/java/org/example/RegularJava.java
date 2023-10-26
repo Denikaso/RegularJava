@@ -9,5 +9,9 @@ public class RegularJava {
     public boolean correctGuid(String guid){
         return Pattern.matches(patternGuid, guid);
     }
-
+    private static String patternURL = "^(https?://)?(www\\.)?((?!www\\.)[a-zA-Z0-9][a-zA-Z0-9-]*[a-zA-Z0-9]\\.)+([a-zA-Z]{2,}){1}" +
+            "(:\\d+)?(/[\\w\\.\\-]*)*(\\?\\w+=[\\w\\+-\\.]+(\\&\\w+=[\\w\\+-\\.]+)*)?(#[\\w\\-]+)?$";
+    public boolean correctURL(String url){
+        return Pattern.matches(patternURL, url);
+    }
 }
