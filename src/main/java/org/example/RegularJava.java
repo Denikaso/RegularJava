@@ -14,4 +14,9 @@ public class RegularJava {
     public boolean correctURL(String url){
         return Pattern.matches(patternURL, url);
     }
+    private static String patternPassword = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9_]{8,}$";
+
+    public boolean strongPassword(String pass) {
+        return Pattern.matches(patternPassword, pass);
+    }
 }

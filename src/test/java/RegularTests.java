@@ -56,4 +56,22 @@ public class RegularTests {
     public void testCorrectURL(String url, boolean expectedResult) {
         Assertions.assertEquals(expectedResult, RJ.correctURL(url));
     }
+    @ParameterizedTest
+    @CsvSource({
+            "C00l_Pass, true",
+            "123456aA, true",
+            "___1__a__A___, true",
+            "1________aA, true",
+            "SuperPass1, true",
+            "Cool_Pass, false",
+            "________, false",
+            "super_pass1, false",
+            "SUPER_PASS1, false",
+            "12345aA, false",
+            "123aA?!*%№@#, false"
+    })
+    public void testStrongPassword(String password, boolean expectedResult) {
+        Assertions.assertEquals(expectedResult, RJ.strongPassword(password));
+    }
+
 }
